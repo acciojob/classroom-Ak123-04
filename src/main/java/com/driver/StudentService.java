@@ -2,9 +2,12 @@ package com.driver;
 
 
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
 public class StudentService {
+@Autowired
 
     StudentRepository studentRepository =new StudentRepository();
 
@@ -30,8 +33,7 @@ public class StudentService {
         return studentRepository.getStudentByTeacherName(name);
     }
     public List<String> getAllStudents(){
-        List<String>list= studentRepository.getAllStudents();
-        return list;
+         return studentRepository.getAllStudents();
     }
     public void deleteTeacherByName(String name){
         studentRepository.deleteTeacherByName(name);

@@ -25,12 +25,14 @@ public class StudentRepository {
     }
 
     public void addStudentTeacherPair(String student,String teacher){
-        List<String>StudentList=new ArrayList<>();
+
         if(Student_TeacherDB.containsKey(teacher)){
+            List<String>StudentList=Student_TeacherDB.get(teacher);
             StudentList.add(student);
             Student_TeacherDB.put(teacher,StudentList);
         }
         else{
+            List<String>StudentList=new ArrayList<>();
             StudentList.add(student);
             Student_TeacherDB.put(teacher,StudentList);
         }
@@ -57,7 +59,12 @@ public class StudentRepository {
         return Student_TeacherDB.get(name);
     }
     public void deleteTeacherByName(String name){
+        List<String>studentList=Student_TeacherDB.get(name);
+        for(String s:studentList){
+            studentDB.remove(s);
+        }
         teacherDB.remove(name);
+        Student_TeacherDB.remove(name);
     }
     public void deleteAllTeachers(){
         teacherDB.clear();
