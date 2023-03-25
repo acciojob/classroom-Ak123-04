@@ -67,6 +67,11 @@ public class StudentRepository {
         Student_TeacherDB.remove(name);
     }
     public void deleteAllTeachers(){
+        for(List<String> teachersList:Student_TeacherDB.values()){
+            for(String s:teachersList){
+                studentDB.remove(s);
+            }
+        }
         teacherDB.clear();
         Student_TeacherDB.clear();
     }
